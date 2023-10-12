@@ -34,10 +34,10 @@
 				<true/>
 			</dict>
 			<key>www.omdbapi.com</key>
-        	<dict>
-            	<key>NSExceptionAllowsInsecureHTTPLoads</key>
-            	<true/>
-        	</dict>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -54,7 +54,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FontAwesome.ttf</string>
+		<string>Feather.ttf</string>
+		<string>AntDesign.ttf</string>
+	</array>
 </dict>
 </plist>

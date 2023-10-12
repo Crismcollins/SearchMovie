@@ -19,7 +19,7 @@ const Searcher: React.FC<SearcherProps> = (props) => {
   return (
     <>
       <TextInput
-        placeholder="Enter a movie"
+        placeholder="Enter a title"
         onChangeText={setMovieName}
         style={styles.searcher}
       >

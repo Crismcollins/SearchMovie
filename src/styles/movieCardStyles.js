@@ -2,20 +2,30 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
-        height: 250,
-        width: 170,
+        backgroundColor: "white",
         margin: 8,
-        shadowColor: 'black',
-        shadowOffset: { width: 1, height: 2 },
-        shadowRadius: 4,
-        shadowOpacity: 0.4,
-        // elevation: 5,
-        
+        width: 160
     },
     image: {
         flex: 1,
-        height: null,
         width: null,
-        borderRadius: 16
+        height: null
+    },
+    imageContainer: {
+        height: 240,
+        width: 160
+    },
+    title: {
+        fontWeight: 'bold',
+        margin: 8
+    },
+    imgNotFound: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "gray",
+    },
+    imgNotFoundText: {
+        color: "white"
     }
 });

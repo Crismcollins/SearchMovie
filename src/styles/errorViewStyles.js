@@ -2,10 +2,11 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
-        justifyContent: 'space-between',
-        paddingHorizontal: 8
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: "center"
     },
-    listContainer: {
-        flex: 1
+    message: {
+        fontSize: 22
     }
 });
