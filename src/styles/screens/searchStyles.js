@@ -20,5 +20,13 @@ export const styles = StyleSheet.create({
     },
     dataContainer: {
       flex:1,
+    },
+    headerContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
+    inputTextContainer: {
+      flex:1,
+      marginRight: 12
     }
   });

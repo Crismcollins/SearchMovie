@@ -1,16 +1,11 @@
-import { useState } from 'react';
 import { TextInput, } from 'react-native';
 import { styles } from '../../styles/searcherStyles';
-
+import { replaceBlankSpaces } from '../../utils/globalUtils';
 interface SearcherProps {
   onChangeTextValue: (data: string) => void;
 }
 
 const Searcher: React.FC<SearcherProps> = (props) => {
-  const replaceBlankSpaces = (string:string) => {
-    return string.replace(" ", "+");
-  }
-
   const setMovieName = (name:string) => {
     const newName = replaceBlankSpaces(name);
     props.onChangeTextValue(newName);
