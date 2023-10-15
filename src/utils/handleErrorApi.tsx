@@ -1,5 +1,3 @@
-import ApiResponse from '../interfaces/ApiResponse';
-
 export enum DataState {
     ManyResults,
     IncorrectID,

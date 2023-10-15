@@ -8,7 +8,8 @@ import {
     API_KEY_PARAM,
     API_YEAR_PARAM,
     API_TYPE_PARAM,
-    URL_SCHEME
+    URL_SCHEME,
+    API_FULL_PLOT_PARAM
 } from "@env";
 
 export const GenerateURLBySearch = (search: string, pageNumber: number) => {
@@ -28,3 +29,6 @@ export const GenerateURLBySearchAdvanced = (search: string, year: string, type: 
     return `${URL_SCHEME}${API_BASE_URL}${searchParam}${params}${API_KEY_PARAM}${API_KEY}${API_PAGE_PARAM}${pageNumber}`;
 }
 
+export const GenerateURLByID = (id: string) => {
+    return `${URL_SCHEME}${API_BASE_URL}${API_ID_PARAM}${id}${API_FULL_PLOT_PARAM}${API_KEY_PARAM}${API_KEY}`;
+}

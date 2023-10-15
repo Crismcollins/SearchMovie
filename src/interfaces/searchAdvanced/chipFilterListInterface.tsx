@@ -1,6 +1,6 @@
 export interface ChipFilterListInterface {
     filters: string[],
-    tags: {
+    tags?: {
         year: string,
         type: string
     }

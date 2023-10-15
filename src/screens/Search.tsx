@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { GenerateURLBySearch, GenerateURLBySearchAdvanced } from '../services/utils/config';
 import { styles } from '../styles/screens/searchStyles';
 import useFetch from '../hooks/apiRequest/useFetch';
-import ApiResponse from '../interfaces/ApiResponse';
+import ApiResponse from '../interfaces/data/ApiResponse';
 import SearchError from '../components/error/searchError';
 import Pagination from '../components/general/pagination';
 import Loading from '../components/loading/loading';
@@ -16,11 +16,13 @@ import { Icon } from 'react-native-elements'
 import { SearchAdvancedProps } from '../interfaces/searchAdvanced/searchAdvancedProps';
 import ChipFilterList from '../components/searchAdvanced/chipFilterList';
 import { DataState, setErrorState } from '../utils/handleErrorApi';
+import MovieData from '../interfaces/data/MovieData';
 
 const blankData = { Search: [], totalResults: '', Response: '' }
+
 const tagsFilter = {
-  year: "year",
-  type: "type"
+  year: "year:",
+  type: "type:"
 }
 
 const Search = () => {
@@ -33,12 +35,12 @@ const Search = () => {
   const [yearFilter, setYearFilter] = useState<string>("");
   const [typeFilter, setTypeFilter] = useState<string>("all");
 
-  const generate = useMemo(() => {
+  const url = useMemo(() => {
     return isSearchFiltered ? GenerateURLBySearchAdvanced(movieName, yearFilter, typeFilter , page)
       : GenerateURLBySearch(movieName, page)
   }, [movieName, page, yearFilter, typeFilter])
 
-  const { data, isLoading, error } = useFetch( generate );
+  const { data, isLoading, error } = useFetch<ApiResponse>( url );
 
   const getMovieNameTyped = (data: string) => {
     setMovieName(data);
@@ -49,10 +51,10 @@ const Search = () => {
   }, [setPage])
 
   const handleErrorState = () => {
-    if (!data.Error)
+    if (!dataAPI.Error)
       return;
 
-    const errorStatus = setErrorState(data.Error);
+    const errorStatus = setErrorState(dataAPI.Error);
     setDataState(errorStatus);
   }
 
@@ -72,6 +74,10 @@ const Search = () => {
     setIsModalOpen(false)
   }
 
+  const isMovieListData = () => Array.isArray(dataAPI.Search);
+
+  const getMoviesList = () => isMovieListData() ? dataAPI.Search as MovieData[] : [];
+
   const searchAdvancedProps = useMemo<SearchAdvancedProps>(() => {
     return {
       isModalOpen ,
@@ -89,7 +95,6 @@ const Search = () => {
   }, [movieName]);
 
   useEffect(() => {
-    console.log(data)
     if (data) {
       if (data.Response === "False") {
         handleErrorState();
@@ -135,7 +140,7 @@ const Search = () => {
         dataState === DataState.Success ? (
           <View style={styles.dataContainer}>
             <Pagination page={page} totalResults={dataAPI.totalResults} updatePage={updatePage} />
-            <MoviesList data={dataAPI.Search} />
+            <MoviesList data={getMoviesList()} />
           </View>
         ) : dataState === DataState.NotFound ? (
           <SearchError title="Search not found" showFace={true} />

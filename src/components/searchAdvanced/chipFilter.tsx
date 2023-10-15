@@ -10,7 +10,7 @@ const ChipFilter:React.FC<ChipFilterInterface> = ({
 
     return(
         <View style={styles.container} testID={filter}>
-            <Text style={styles.text}>{tag}: {filter}</Text>
+            <Text style={styles.text}>{tag} {filter}</Text>
         </View>
     )
 }

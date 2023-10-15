@@ -8,7 +8,7 @@ import {
 
 import MovieCard from './movieCard';
 import { styles } from '../../styles/moviesListStyles';
-import MovieData from '../../interfaces/MovieData';
+import MovieData from '../../interfaces/data/MovieData';
 
 const MoviesList = (props: {data: MovieData[]}) => {
 
@@ -17,7 +17,7 @@ const MoviesList = (props: {data: MovieData[]}) => {
         <FlatList 
         data={ props.data } 
         numColumns={2}
-        renderItem={({ item }) => <MovieCard data={item}/> }
+        renderItem={({ item }) => <MovieCard {... item}/> }
         contentContainerStyle= {styles.container}
       />
       </View>

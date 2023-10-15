@@ -10,4 +10,5 @@ declare module '@env' {
     export const API_YEAR_PARAM:string;
     export const API_TYPE_PARAM:string;
     export const API_AND:string;
+    export const API_FULL_PLOT_PARAM:string;
   }

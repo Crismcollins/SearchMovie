@@ -1,3 +1,3 @@
-export const replaceBlankSpaces = (string:string) => {
-    return string.replace(" ", "+");
-}
+export const replaceBlankSpaces = (string:string) =>  string.replace(" ", "+");
+
+export const convertStringToList = (data:string) => data.split(",");
