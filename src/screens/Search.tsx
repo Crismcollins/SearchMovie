@@ -2,7 +2,7 @@ import { Text, View } from 'react-native';
 import Searcher from '../components/general/Searcher';
 import MoviesList from '../components/general/moviesList';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { GenerateURLBySearch, GenerateURLBySearchAdvanced } from '../services/utils/config';
+import { GenerateURLBySearch, GenerateURLBySearchAdvanced } from '../services/utils/configURLs';
 import { styles } from '../styles/screens/searchStyles';
 import useFetch from '../hooks/apiRequest/useFetch';
 import ApiResponse from '../interfaces/data/ApiResponse';

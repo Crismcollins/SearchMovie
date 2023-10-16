@@ -32,3 +32,7 @@ export const GenerateURLBySearchAdvanced = (search: string, year: string, type: 
 export const GenerateURLByID = (id: string) => {
     return `${URL_SCHEME}${API_BASE_URL}${API_ID_PARAM}${id}${API_FULL_PLOT_PARAM}${API_KEY_PARAM}${API_KEY}`;
 }
+
+export const convertMovieIdToApiUrl = (moviesId:string[]) => {
+    return moviesId.map((movieId) => GenerateURLByID(movieId));
+}

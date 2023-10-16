@@ -1,3 +1,10 @@
 export const screenTabNavigatorOptions = {
-    headerShown: false
+    headerShown: false,
+
+}
+
+export const headerStyleStack = {
+    cardStyle: {
+        backgroundColor: "red"
+    }
 }

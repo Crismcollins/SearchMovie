@@ -1,22 +1,25 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const saveData = async (key: string, value: string) => {
+export const getAllKeys = async () => {
   try {
-    await AsyncStorage.setItem(key, value);
+    let keys = await AsyncStorage.getAllKeys();
+    return keys;
   } catch (e) {
-    // saving error
-    console.error("Error save data: " + e)
+    console.error("Error to get allKeys: " + e)
   }
 };
 
-export const loadData = async (key: string) => {
+export const clearAll = async () => {
   try {
-    const value = await AsyncStorage.getItem(key);
-    if (value !== null) {
-      return value;
-    }
-    return null;
-  } catch (e) {
-    console.error("Error load data " + e);
+    await AsyncStorage.clear()
+  } catch(e) {
+    // clear error
   }
-};
+
+  console.log('Done.')
+}
+
+export const filterKeysByTag = async (tag:string) => {
+  const keys = await getAllKeys();
+  return keys?.filter((key) => key.startsWith(tag));
+}

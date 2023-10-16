@@ -6651,6 +6651,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+use-async@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/use-async/-/use-async-1.0.6.tgz#fe681f582aeed759935f4ec794e1bc8e8cfab8ba"
+  integrity sha512-Qh6/fJt0BvM8YTboC06gTUDc19Bxyxp8tLAt+p9Jx1EwhBtsQZdDj00QdXMDM+fL2NIazuEhjSdDCVQdFjv8CQ==
+
 use-latest-callback@^0.1.5:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/use-latest-callback/-/use-latest-callback-0.1.6.tgz#3fa6e7babbb5f9bfa24b5094b22939e1e92ebcf6"

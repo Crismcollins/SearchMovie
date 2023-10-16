@@ -11,7 +11,7 @@ import { styles } from '../../styles/moviesListStyles';
 import MovieData from '../../interfaces/data/MovieData';
 
 const MoviesList = (props: {data: MovieData[]}) => {
-
+  
     return(
       <View style={styles.listContainer}>
         <FlatList 

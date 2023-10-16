@@ -36,3 +36,17 @@ export const sharedTabOptions = {
         />
     )
 }
+
+export const tabNavigatorStyle = {
+    tabBarStyle: {
+        backgroundColor:"#9400d3",
+        
+    },
+    tabBarActiveBackgroundColor:"#5F0087",
+    tabBarActiveTintColor: "white",
+    tabBarInactiveTintColor: "#DBDBDB",
+    headerStyle: {
+      backgroundColor:"#9400d3",
+    },
+    headerTintColor: "white"
+}

@@ -3,7 +3,7 @@ import BackButtonHeader from '../components/navigation/backButtonHeader';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { ScreensStackParamList } from '../types/types';
 import { useEffect, useMemo, useState } from 'react';
-import { GenerateURLByID } from '../services/utils/config';
+import { GenerateURLByID } from '../services/utils/configURLs';
 import useFetch from '../hooks/apiRequest/useFetch';
 import { styles } from '../styles/screens/detailStyles';
 import MovieDetailData from '../interfaces/data/MovieDetailData';
@@ -19,7 +19,6 @@ import NotFoundImage from '../components/general/notFoundImage';
 import ShareMovieButton from '../components/utils/shareMovieButton';
 import ModalApp from '../components/general/modal/modalApp';
 import SendEmailModal from '../components/sendEmail/sendEmailModal';
-import { loadData } from '../services/asyncStorage/asyncStorage';
 
 const Detail = () => {
 
@@ -27,9 +26,10 @@ const Detail = () => {
     const { imdbID } = route.params;
     const [movieData, setMovieData] = useState<MovieDetailData>();
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    //const [isFav, setIsFav] = useState<boolean>(movieIsFav());
+    const [isFav, setIsFav] = useState<boolean>(false);
 
     const url = useMemo(() => {
+
         return GenerateURLByID(imdbID);
     }, [imdbID]);
 
@@ -61,10 +61,7 @@ const Detail = () => {
 
     const handleModal = () => setIsModalOpen(!isModalOpen);
 
-    const movieIsFav = async () => {
-        const value = await loadData("fav-"+imdbID);
-        return value !== null;
-    }
+    const a =  async () => true
 
     useEffect(() => {
         if (data)
@@ -101,7 +98,7 @@ const Detail = () => {
                         <View style={styles.dataContainer}>
                             <View style={styles.titleContainer}>
                                 <Text style={styles.title}>{movieData?.Title}</Text>
-                                <FavoriteButton isFav={false} size={32} isButton={true} />
+                                <FavoriteButton size={32} isButton={true} movieId={imdbID}/>
                             </View>
 
                             <View style={styles.genreContainer}>
@@ -110,7 +107,7 @@ const Detail = () => {
 
                             <View style={styles.cardDataContainer}>
                                 <DataIcon
-                                    icon={<FavoriteButton isFav={true} size={22} isButton={false} />}
+                                    icon={<FavoriteButton size={22} isButton={false} />}
                                     data={showRating()}
                                 />
 

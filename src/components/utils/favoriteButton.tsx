@@ -2,33 +2,56 @@ import { useEffect, useState } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { FavoriteButtonInterface } from '../../interfaces/utils/favoriteButton';
-import { saveData } from '../../services/asyncStorage/asyncStorage';
+import { ASYNCSTORAGE_FAV } from '@env';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 const FavoriteButton: React.FC<FavoriteButtonInterface> = ({
-    isFav,
     size,
     isButton,
     movieId
 }) => {
 
-    const [fav, setFav] = useState<boolean>(isFav);
+    const key: string = generateKey();
+    const { getItem, setItem, removeItem } = useAsyncStorage(key);
+    const [fav, setFav] = useState<boolean>(false);
 
-    const getIsFav = () => setFav(isFav);
+    function generateKey() {
+        return ASYNCSTORAGE_FAV + movieId;
+    }
 
     const addToFavorites = async () => {
-        if (isButton && movieId) {
-            await saveData("favorites", "fav-"+movieId);
-            setFav(!fav)
-        }
+        setItem(ASYNCSTORAGE_FAV+key);
+        setFav(true)
+    }
+
+    const removeToFavorites = async () => {
+        removeItem();
+        setFav(false)
+    }
+
+    const getIsFavoriteMovie = async () => {
+        const item = await getItem();
+        const movieIsFavorite = item !== null;
+        setFav(movieIsFavorite);
+    }
+
+    const handleFavorite = async () => {
+        if(!isButton) return;
+
+        if(fav)
+            removeToFavorites();
+        else
+            addToFavorites();
     }
 
     useEffect(() => {
-        getIsFav();
-    }, [isFav]);
+        if (!movieId) return;
+        getIsFavoriteMovie()
+    }, []);
 
     return (
         <TouchableWithoutFeedback
-            onPress={addToFavorites}
+            onPress={handleFavorite}
         >
             <Icon
                 name={fav ? "star" : "star-outline"}

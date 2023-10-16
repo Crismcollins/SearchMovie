@@ -4,34 +4,10 @@ import TabNavigator from './tabNavigator';
 import Detail from '../screens/Detail';
 import { screenTabNavigatorOptions } from '../styles/navigation/stacksStyle';
 import { ScreensStackParamList } from '../types/types';
-
+import { linking } from './deeplinks/config';
 const Stack = createNativeStackNavigator<ScreensStackParamList>();
 
 const StackNavigator = () => {
-
-  const linking = {
-    prefixes: ['searchmovies://'],
-    config: {
-      screens: {
-        TabNavigator: {
-          screens: {
-            Search: {
-              path: 'Search',
-            },
-            Favorites: {
-              path: 'Favorites'
-            },
-            Shared: {
-              path: 'Shared'
-            }
-          }
-        },
-        Detail:{ 
-          path: 'Detail/:imdbID'
-        }
-      }
-    }
-  }
 
   return (
     <NavigationContainer linking={linking}>

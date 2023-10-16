@@ -6,6 +6,9 @@ import { deeplinks } from "../../utils/deeplinks";
 import { GenerateTinyURL } from "../../navigation/deeplinks/tinyurl";
 import { useState } from "react";
 import { SendEmailModalInterface } from "../../interfaces/sendEmail/SendEmailModal";
+import { useAsyncStorage } from "@react-native-async-storage/async-storage";
+import { ASYNCSTORAGE_SHARED } from "@env";
+
 
 const SendEmailModal: React.FC<SendEmailModalInterface> = ({
     movieId,
@@ -13,12 +16,14 @@ const SendEmailModal: React.FC<SendEmailModalInterface> = ({
 }) => {
 
     const [email, setEmail] = useState<string>("");
+    const { setItem } = useAsyncStorage(ASYNCSTORAGE_SHARED+movieId);
 
     const handleShareMovie = async () => {
         const tinyURL = await GenerateTinyURL(deeplinks.detail + movieId);
         const data = buildEmailObj(email, tinyURL);
         sendEmail(data)
         handleIsModalOpen(false);
+        setItem(ASYNCSTORAGE_SHARED+movieId);
     }
 
     return (
